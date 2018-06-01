@@ -553,7 +553,7 @@ function _addLayerEvents($canvas, data, layer) {
 		}
 	}
 	if (!data.events.mouseout) {
-		$canvas.bind('mouseout.jCanvas', function () {
+		$canvas.on('mouseout.jCanvas', function () {
 			// Retrieve the layer whose drag event was canceled
 			var layer = data.drag.layer, l;
 			// If cursor mouses out of canvas while dragging
@@ -2287,9 +2287,9 @@ function _createEvent(eventName) {
 		if (!data.events[helperEventName]) {
 			// Bind one canvas event which handles all layer events of that type
 			if (touchEventName !== helperEventName) {
-				$canvas.bind(helperEventName + '.jCanvas ' + touchEventName + '.jCanvas', eventCallback);
+				$canvas.on(helperEventName + '.jCanvas ' + touchEventName + '.jCanvas', eventCallback);
 			} else {
-				$canvas.bind(helperEventName + '.jCanvas', eventCallback);
+				$canvas.on(helperEventName + '.jCanvas', eventCallback);
 			}
 			// Prevent this event from being bound twice
 			data.events[helperEventName] = true;
